@@ -4,7 +4,7 @@ const Finance = () => {
     return (
         <div className='bg-slate-100 mt-7 w-11/12 mx-auto p-7 rounded-xl'>
             <h2 className='text-4xl font-semibold text-center mb-10'>Transform Your Financial Future</h2>
-            <div className='grid grid-cols-3 gap-3'>
+            <div className='grid lg:grid-cols-3 gap-3 md:grid-cols-2 sm:grid-cols-1'>
                 <div className="card bg-base-100 w-96">
                     <figure>
                         <img
