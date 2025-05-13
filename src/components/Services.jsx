@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
 
@@ -28,7 +29,7 @@ const Services = () => {
                                 <p className='font-medium text-base'>Price: {service.pricing}</p>
                                 <p className='font-medium text-base'>Counselor: {service.counselor}</p>
                                 <div className="card-actions justify-end mt-2">
-                                    <button className="btn bg-emerald-600 text-white">Learn More</button>
+                                    <Link to={`/services/${service.id}`}><button className="btn bg-emerald-600 text-white">Learn More</button></Link>
                                 </div>
                             </div>
                         </div>)

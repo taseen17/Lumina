@@ -1,6 +1,22 @@
-import {NavLink} from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
+
 
 const Navbar = () => {
+
+    const { user, logoutUser } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logoutUser()
+            .then(console.log("Logged out"))
+        toast("Logout successful!")
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    console.log(user)
     return (
         <div>
             <div className="navbar bg-base-100 w-11/12 mx-auto">
@@ -23,20 +39,28 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><NavLink>Home</NavLink></li>
-                            <li><a>Item 3</a></li>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><a>My Profile</a></li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl font-semibold">L U<span className="text-amber-400"> M I </span>N A</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><NavLink>Home</NavLink></li>
-                        <li><a>Item 3</a></li>
+                        <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink to="/myprofile">My Profile</NavLink></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Login</a>
+                <div className="navbar-end gap-3">
+                    {
+                        user ?
+                            <div className="flex gap-2">
+                                <img className="w-10 rounded-full" src={user.photoURL} alt="" />
+                                <Link onClick={handleLogout} className="btn">Logout</Link>
+                            </div>
+                            :
+                            <Link to="/login" className="btn">Login</Link>
+                    }
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ const Slider = () => {
     return (
         <div className="w-11/12 mx-auto">
             <div className='mt-8 text-center space-y-3'>
-                <h2 className='text-4xl font-bold'>Personalized Career Guideline</h2>
+                <h2 className='text-5xl font-bold'>Personalized Career Guideline</h2>
                 <p className='text-xl'> LU<span className='text-amber-400'>MI</span>NA illuminates the life of those who are looking for lights  in their life. <br /> Our goal is to help you plan, prepare and create a future for you.</p>
             </div>
             <div className="carousel mt-9">
