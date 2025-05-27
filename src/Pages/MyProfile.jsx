@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MyProfile = () => {
     const { user, updateUserProfile } = useContext(AuthContext)
@@ -9,9 +11,13 @@ const MyProfile = () => {
         const name = e.target.name.value
         const photo = e.target.photo.value
         updateUserProfile({displayName:name, photoURL:photo})
+        e.target.reset()
     }
     return (
         <div className='mt-7 w-11/12 mx-auto'>
+            <Helmet>
+                <title>My Profile</title>
+            </Helmet>
             <div className='flex justify-center items-center'>
                 <img className='w-60 rounded-full' src={user.photoURL} alt="" />
             </div>

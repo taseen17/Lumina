@@ -1,12 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from "react-toastify";
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
-    const { setUser, loginUser } = useContext(AuthContext)
+    const { setUser, loginUser, loginWithGoogle, forgetPassword } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    const emailRef = useRef()
+
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
+        .then((result) => {
+            toast("Login successful!")
+            navigate(location?.state ? location.state : "/")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,8 +37,18 @@ const Login = () => {
                 console.log(error)
             })
     }
+
+    const handleForgetPassword = () => {
+        const email = emailRef.current.value
+
+        forgetPassword(email)
+        .then(() => {
+            toast("Password reset email set.")
+        })
+    }
     return (
         <div>
+            <Helmet><title>Login</title></Helmet>
             <div className="hero bg-emerald-50 min-h-screen ">
                 <div className="hero-content flex-col w-11/12 mx-auto">
                     <div className="text-center">
@@ -37,7 +60,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text font-medium text-base">Email</span>
                                 </label>
-                                <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+                                <input name='email' type="email" placeholder="email" ref={emailRef} className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -45,11 +68,12 @@ const Login = () => {
                                 </label>
                                 <input name='password' type="password" placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover font-medium">Forgot password?</a>
+                                    <a onClick={handleForgetPassword} href="#" className="label-text-alt link link-hover font-medium">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary mb-3">Login</button>
+                                <button onClick={handleGoogleLogin} className="btn btn-primary mb-3">Login with Google</button>
                                 <Link to="/register" className="label-text-alt link link-hover text-center font-medium">Create an account</Link>
                             </div>
                         </form>

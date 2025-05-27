@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData, useParams } from 'react-router-dom';
 
 const ServiceDetails = () => {
@@ -18,6 +19,9 @@ const ServiceDetails = () => {
     }
     return (
         <div className='w-11/12 mx-auto flex justify-center'>
+            <Helmet>
+                <title>Services | {id}</title>
+            </Helmet>
             <div className="card shadow-sm mt-7">
                 <figure>
                     <img
