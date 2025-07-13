@@ -30,7 +30,7 @@ const Register = () => {
         const email = e.target.email.value
         const photo = e.target.photo.value
         
-        const strongPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,}$/
+        const strongPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/
         
         if (!strongPassword.test(pass)) {
             setErrorMessage("Password must have an uppercase letter, a Lowercase letter,Length must be at least 6 character.")
@@ -40,7 +40,7 @@ const Register = () => {
         createNewUser(email,pass)
         .then((result) => {
             const user = result.user
-            console.log(user)
+            // console.log(user)
             setUser(user)
             updateUserProfile({displayName:name, photoURL:photo})
             .then(() => {

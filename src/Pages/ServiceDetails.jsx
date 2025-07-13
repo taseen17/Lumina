@@ -4,10 +4,10 @@ import { useLoaderData, useParams } from 'react-router-dom';
 
 const ServiceDetails = () => {
     const data = useLoaderData()
-    console.log(data)
+    // console.log(data)
     const { id } = useParams()
     const service = data.find(service => service.id === id)
-    console.log(service)
+    // console.log(service)
 
     const [comments, setComments] = useState([])
 

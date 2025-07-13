@@ -10,13 +10,12 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logoutUser()
-            .then(console.log("Logged out"))
-        toast("Logout successful!")
+            .then(toast("Logout successful!"))
             .catch((error) => {
                 console.log(error)
             })
     }
-    console.log(user)
+    // console.log(user)
     return (
         <div>
             <div className="navbar bg-base-100 w-11/12 mx-auto">

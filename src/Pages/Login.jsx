@@ -29,7 +29,7 @@ const Login = () => {
         loginUser(email, password)
             .then((result) => {
                 const user = result.user
-                console.log(user)
+                // console.log(user)
                 toast("Login successful!");
                 navigate(location?.state ? location.state : "/")
             })
